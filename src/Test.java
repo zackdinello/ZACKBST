@@ -16,9 +16,10 @@ public class Test {
         bst.insert(album);
         bst.insert(album1);
         bst.insert(album2);
-        bst.insert(album3);
-       // bst.deleteKey(album);
-        //bst.printLevelOrder();
+        //bst.insert(album3);
+        //System.out.println(bst.contains(album3));
+        //bst.deleteKey(album);
+        bst.printLevelOrder();
 
         //"100, 50, 150, 25, N, 125, 180, N, N, N, N, N, N, N, N"
     }

@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class BST {
@@ -13,16 +14,16 @@ public class BST {
 
     // This method calls insertRec()
     void insert(Album key) {
-        root = insertRec(root, key);
+        root =  insertRec(root, key);
     }
 
     /* A recursive function to insert a new key in BST */
     Node insertRec(Node root, Album key) {
 
         /* If the tree is empty, return a new node */
+        Node temp = new Node(key);
         if (root == null) {
-            root = new Node(key);
-            return root;
+            return temp;
         }
 
         /* Otherwise, recur down the tree */
@@ -65,6 +66,23 @@ public class BST {
 
         return root;
     }
+    public boolean contains( Album x )
+    {
+        return contains( x, root );
+    }
+    private boolean contains( Album x, Node t )
+    {
+        if( t == null )
+            return false;
+        int compareResult = x.compareTo( t.album );
+        if( compareResult < 0 )
+            return contains( x, t.left );
+        else if( compareResult > 0 )
+            return contains( x, t.right );
+        else
+            return true; // Match
+    }
+
     // Find the inorder successor
     Album minValue(Node root) {
         Album minv = root.album;
@@ -83,7 +101,7 @@ public class BST {
 
 
             Node tempNode = queue.poll();
-            System.out.print(tempNode.album.toString() + " ");
+            System.out.print(tempNode.album.numberOfSongs + " ");
 
             /*Enqueue left child */
             if (tempNode.left == null) {
@@ -100,5 +118,6 @@ public class BST {
             }
         }
     }
+
 
 }
