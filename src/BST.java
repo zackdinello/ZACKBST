@@ -102,30 +102,33 @@ public class BST {
         return minv;
     }
 
-    void printLevelOrder()
+    public String toString()
     {
+        String ans = "";
         Queue<Node> queue = new LinkedList<Node>();
         queue.add(root);
         while (!queue.isEmpty()) {
 
 
             Node tempNode = queue.poll();
-            System.out.print(tempNode.album.numberOfSongs + " ");
+            ans += tempNode.album.numberOfSongs + " ";
+
 
             /*Enqueue left child */
             if (tempNode.left == null) {
-                System.out.print("N ");
+                ans += "N ";
             }else{
                 queue.add(tempNode.left);
             }
 
             /*Enqueue right child */
             if (tempNode.right == null) {
-                System.out.print("N ");
+                ans += "N ";
             }else{
                 queue.add(tempNode.right);
             }
         }
+        return ans;
     }
 
     void storeBSTNodes(Node root, Vector<Node> nodes)

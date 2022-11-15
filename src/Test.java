@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        BST bst = new BST();
 
+        BST bst = new BST();
         ArrayList<String> listOfSongs = new ArrayList<>();
         listOfSongs.add("hello");
         listOfSongs.add("like you");
@@ -17,15 +17,20 @@ public class Test {
         bst.insert(album);
         bst.insert(album1);
         bst.insert(album2);
-        //bst.insert(album3);
-        //bst.insert(album4);
+        bst.insert(album3);
+        bst.insert(album4);
         System.out.println(bst.contains(album4));
-        //bst.deleteKey(album);
-        bst.printLevelOrder();
+        System.out.println(bst.toString());
+        bst.deleteKey(album);
         bst.rebalance();
-        System.out.println();
-        bst.printLevelOrder();
+        System.out.println(bst.toString());
+
+
+
+
 
         //"100, 50, 150, 25, N, 125, 180, N, N, N, N, N, N, N, N"
+
     }
+
 }
