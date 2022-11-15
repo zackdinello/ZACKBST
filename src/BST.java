@@ -5,6 +5,10 @@ public class BST {
     // Root of BST
     Node root;
 
+    Node getRoot(){
+        return this.root;
+    }
+
     // Constructor
     BST() {
         root = null;
@@ -172,6 +176,29 @@ public class BST {
         int n = nodes.size();
         return buildTreeUtil(nodes, 0, n - 1);
     }
+
+    ArrayList<Album> partion(Album album){
+        ArrayList<Album> result = new ArrayList<>();
+        inorder(root,result,album);
+        return result;
+    }
+    void inorder(Node node, ArrayList<Album> result, Album album)
+    {
+        if (node == null)
+            return;
+
+        /* first recur on left child */
+        inorder(node.left, result,album);
+
+        /* then print the data of node */
+       if(node.album.numberOfSongs > album.numberOfSongs){
+           result.add(album);
+       }
+
+        /* now recur on right child */
+        inorder(node.right,result,album);
+    }
+
 
 
 }
