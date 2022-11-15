@@ -22,7 +22,7 @@ public class Test {
         System.out.println(bst.contains(album4));
         System.out.println(bst.toString());
         bst.deleteKey(album);
-        bst.rebalance();
+        //bst.rebalance();
         System.out.println(bst.toString());
 
 
