@@ -19,10 +19,10 @@ public class Test {
         bst.insert(album2);
         bst.insert(album3);
         bst.insert(album4);
-        System.out.println(bst.contains(album4));
+        System.out.println("Contains method check: " + bst.contains(album4));
         System.out.println(bst.toString());
         bst.deleteKey(album);
-        //bst.rebalance();
+        bst.rebalance();
         System.out.println(bst.toString());
 
 
