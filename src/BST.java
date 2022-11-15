@@ -1,6 +1,4 @@
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.Queue;
+import java.util.*;
 
 public class BST {
 
@@ -13,8 +11,9 @@ public class BST {
     }
 
     // This method calls insertRec()
-    void insert(Album key) {
+    Node insert(Album key) {
         root =  insertRec(root, key);
+        return new Node(key);
     }
 
     /* A recursive function to insert a new key in BST */
@@ -35,14 +34,20 @@ public class BST {
         /* return the (unchanged) node pointer */
         return root;
     }
-    void deleteKey(Album key) {
+    Node deleteKey(Album key) {
         root = deleteRec(root, key);
+        return new Node(key);
     }
 
     Node deleteRec(Node root, Album key) {
         // Return if the tree is empty
+
+        if(!contains(key)){
+            throw new IllegalArgumentException();
+        }
         if (root == null)
             return root;
+
 
         // Find the node to be deleted
         if (key.numberOfSongs < root.album.numberOfSongs)
@@ -117,6 +122,55 @@ public class BST {
                 queue.add(tempNode.right);
             }
         }
+    }
+
+    void storeBSTNodes(Node root, Vector<Node> nodes)
+    {
+        // Base case
+        if (root == null)
+            return;
+
+        // Store nodes in Inorder (which is sorted
+        // order for BST)
+        storeBSTNodes(root.left, nodes);
+        nodes.add(root);
+        storeBSTNodes(root.right, nodes);
+    }
+
+    /* Recursive function to construct binary tree */
+    Node buildTreeUtil(Vector<Node> nodes, int start,
+                       int end)
+    {
+        // base case
+        if (start > end)
+            return null;
+
+        /* Get the middle element and make it root */
+        int mid = (start + end) / 2;
+        Node node = nodes.get(mid);
+
+        /* Using index in Inorder traversal, construct
+           left and right subtress */
+        node.left = buildTreeUtil(nodes, start, mid - 1);
+        node.right = buildTreeUtil(nodes, mid + 1, end);
+
+        return node;
+    }
+
+    // This functions converts an unbalanced BST to
+    // a balanced BST
+    void rebalance(){
+        root = buildTree(root);
+    }
+    Node buildTree(Node root)
+    {
+        // Store nodes of given BST in sorted order
+        Vector<Node> nodes = new Vector<Node>();
+        storeBSTNodes(root, nodes);
+
+        // Constructs BST from nodes[]
+        int n = nodes.size();
+        return buildTreeUtil(nodes, 0, n - 1);
     }
 
 
