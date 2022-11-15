@@ -18,8 +18,8 @@ public class Test {
         bst.insert(album1);
         bst.insert(album2);
         bst.insert(album3);
-        bst.insert(album4);
-        //System.out.println(bst.contains(album3));
+        //bst.insert(album4);
+        System.out.println(bst.contains(album4));
         //bst.deleteKey(album);
         bst.printLevelOrder();
         bst.rebalance();
